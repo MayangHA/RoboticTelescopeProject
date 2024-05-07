@@ -37,7 +37,7 @@ const AvatarLogin = () => {
           </MenuButton>
           <MenuList alignItems={'center'} p="3" direction='ltr'>
 
-            <RouterLink>
+            <RouterLink to="/profile">
               <MenuItem color={'black'}> Profil </MenuItem>
             </RouterLink>
 

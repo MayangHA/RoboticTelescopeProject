@@ -10,7 +10,7 @@ function Home () {
       <>
         <NavbarNL></NavbarNL>
         <Container as="section" maxWidth={"container.lg"} py="20px">
-          <Select placeholder='Pilih Data yang ingin ditampilkan' sixe='md' variant={'filled'} bg='grey' color={'black'}>
+          <Select placeholder='Pilih Data yang ingin ditampilkan' size='md' variant={'filled'} bg='grey' color={'black'} maxW={'30%'}>
             <option value='option1'>Suhu Awan/Langit</option>
             <option value='option2'>Suhu Sekitar</option>
             <option value='option3'>Kelembaban Rata-Rata</option>

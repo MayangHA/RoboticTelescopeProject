@@ -55,7 +55,7 @@ function LineChart() {
         ],
     };
     return (
-        <Box >
+        <Box py={10}>
             <Line options={option} data={data} />
         </Box>        
     );
