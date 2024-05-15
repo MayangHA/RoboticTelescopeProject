@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "seed": "sequelize-cli db:seed:all",
     "migrate:up": "sequelize-cli db:migrate",

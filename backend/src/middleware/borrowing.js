@@ -46,7 +46,7 @@ exports.userOrAdminMw = asyncMw(async (req, res, next) => {
   }
 
   if (
-    req.auth.role !== USER_ROLE.ADMIN ||
+    req.auth.role !== USER_ROLE.ADMIN &&
     req.auth.userId !== borrowing.dataValues.userId
   ) {
     return res.status(403).json({

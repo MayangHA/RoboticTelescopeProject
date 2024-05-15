@@ -69,12 +69,24 @@ class UserController {
   update = asyncMw(async (req, res) => {
     const body = updateUserSchema.parse(req.body);
 
-    const [, [user]] = await User.update(body, {
+    const user = await User.findOne({
       where: {
         userId: +req.params.userId,
       },
-      returning: true,
     });
+
+    if (!user) {
+      return res.status(404).json({
+        code: 404,
+        message: 'User not found.',
+      });
+    }
+
+    if (req.auth.role === USER_ROLE.USER && body.role) {
+      delete body.role;
+    }
+
+    await user.update(body);
 
     return res.status(200).json({
       code: 200,
