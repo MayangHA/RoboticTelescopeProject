@@ -10,6 +10,8 @@ exports.envSchema = z.object({
   PORT: z.coerce.number().default(3000),
   SALT_ROUNDS: z.coerce.number().default(10),
   JWT_SECRET: z.string().default('secret'),
+  MEGA_EMAIL: z.string().email(),
+  MEGA_PASS: z.string(),
 });
 
 exports.env = this.envSchema.parse(process.env);
