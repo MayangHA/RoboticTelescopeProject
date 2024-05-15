@@ -7,6 +7,7 @@ const {
   updateUserPasswordSchema,
 } = require('../schemas/user');
 const { hashText } = require('../utils/hashing');
+const { USER_ROLE } = require('../utils/constant');
 
 class UserController {
   constructor() {}
