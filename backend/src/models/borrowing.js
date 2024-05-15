@@ -86,6 +86,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      borrowingTimeUntil: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
       priorityPoint: {
         allowNull: false,
         type: DataTypes.INTEGER,
