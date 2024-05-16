@@ -20,12 +20,14 @@ import {
     Tooltip
 } from "@chakra-ui/react";
 import FormPinjam from "../../../components/formpinjam";
+import useAuthStore from "../../../store/auth";
+import NavbarL from "../../../components/Navbar/Logged-In/NavbarL";
 
 function PeminjamanTeleskop () {
-
+    const {token} = useAuthStore();
     return (
         <>
-            <NavbarNL></NavbarNL>
+            {token ? <NavbarL></NavbarL> : <NavbarNL></NavbarNL>}
             <FormPinjam></FormPinjam>
             {/* <Container maxWidth={"container.lg"} py="20px" bgColor={'black'} centerContent justifyContent={'center'}>
                 <Box bg={'whitesmoke'} w={'50%'} alignItems={'center'} alignContent={'center'}>

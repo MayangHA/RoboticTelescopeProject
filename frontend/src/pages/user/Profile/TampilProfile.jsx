@@ -20,10 +20,11 @@ import {
 import Navbar from "../../../components/User/Navbar";
 import { Link as RouterLink} from 'react-router-dom';
 import { FaUserEdit, FaKey } from "react-icons/fa";
+import useAuthStore from "../../../store/auth";
  
 
 const ShowProfile = () => {
-    
+    const {auth} = useAuthStore();
     return (
         <>
 
@@ -53,7 +54,7 @@ const ShowProfile = () => {
                     {/* Add API name here */}
 
                     <div>
-                        <Heading>John Doe</Heading>
+                        <Heading>{auth.fullName}</Heading>
                     </div>
 
                     <Flex>
@@ -81,7 +82,7 @@ const ShowProfile = () => {
                                 Nama Lengkap
                             </Heading>
                             <Box borderBottom={"1px"} borderColor={"gray.300"} >
-                                John Doe
+                                {auth.fullName}
                             </Box>
                         </Box>
 
@@ -90,7 +91,7 @@ const ShowProfile = () => {
                                 Email
                             </Heading>
                             <Box borderBottom={"1px"} borderColor={"gray.300"}>
-                                JohnD@gmail.com
+                                {auth.email}
                             </Box>
                         </Box>
 

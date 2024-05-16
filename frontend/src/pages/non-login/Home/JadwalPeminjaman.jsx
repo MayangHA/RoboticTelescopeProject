@@ -28,11 +28,17 @@ import {
     TableCaption,
     TableContainer,
 } from "@chakra-ui/react";
+import useAuthStore from "../../../store/auth";
+import NavbarL from "../../../components/Navbar/Logged-In/NavbarL";
 
 const JadwalPeminjaman = () => {
+
+    const {token} = useAuthStore()
+
     return (
+
         <>
-            <NavbarNL />
+            {token ? <NavbarL /> : <NavbarNL />}
             <Container p={5} maxW={"container.lg"} >
                 <Center>
                 <Heading>Jadwal Peminjaman</Heading>

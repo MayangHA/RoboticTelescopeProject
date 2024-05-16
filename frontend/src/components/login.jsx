@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Form } from "react-router-dom";
 import { ChakraProvider} from "@chakra-ui/react";
+import { login } from "../api/auth";
 
 import {
     Button, 
@@ -29,15 +30,28 @@ import {
 
 function Login() {
 
-    const [touched, setTouched] = useState(false);
+    const [loginForm, setloginForm] = useState({
+        email: "",
+        password: ""
+    });
+
     function handleChange (event) {
         const {value, name} = event.target;
 
-        setloginForm(prevNote => Box({
+        setloginForm(prevNote => ({
             ...prevNote,
             [name]: value
         }));
-        setTouched(true);
+    }
+
+    const submitForm = async () => {
+        try {
+            const data = await login(loginForm);
+
+            return data;
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -59,7 +73,6 @@ function Login() {
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <FormControl id="email" pb='3'
-                            isInvalid={touched}
                             isRequired
                         >
                             <FormLabel>
@@ -67,17 +80,22 @@ function Login() {
                             </FormLabel>
                             <Input 
                                 name="email"
-                                placeholder="Masukkan Email"    
+                                placeholder="Masukkan Email"
+                                onChange={handleChange}
+                                value={loginForm.email}    
                             />
                         </FormControl>
 
-                        <FormControl id="password" isInvalid={touched} isRequired>
+                        <FormControl id="password" isRequired>
                             <FormLabel>
                                 Password
                             </FormLabel>
                             <Input 
                                 name="password"
                                 placeholder="Masukkan Password"
+                                onChange={handleChange}
+                                value={loginForm.password}
+                                type="password"
                             />
                         </FormControl>
 
@@ -86,7 +104,9 @@ function Login() {
                             maxW={'md'}
                             pt={5}
                         >
-                            <Button>
+                            <Button
+                                onClick={submitForm}
+                            >
                                 Masuk
                             </Button>
                         </Stack>

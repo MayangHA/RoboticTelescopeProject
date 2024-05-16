@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {useState} from "react";
+import { register } from "../api/auth";
 import {
     Button, 
     Modal,
@@ -25,9 +26,34 @@ import {
     Tooltip
 } from "@chakra-ui/react";
 
-function Register(props) {
+function Register() {
 
-    const [touched, setTouch] = useState(false)
+    const [form, setForm] = useState({
+        fullName: "",
+        email: "",
+        password: ""
+    });
+
+    function handleChange(event) {
+        const {value, name} = event.target
+        setForm(prevNote => ({
+            ...prevNote,
+            [name]: value
+        })
+        )
+
+    }
+    const submitForm = async () => {
+        try {
+            const data = await register(form);
+
+            return data;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -75,8 +101,10 @@ function Register(props) {
                             Nama Lengkap
                         </FormLabel>
                         <Input 
-                            name="name"
+                            name="fullName"
                             placeholder=" Nama Lengkap"
+                            onChange={handleChange}
+                            value={form.fullName}
                         />
                     </FormControl>
 
@@ -87,6 +115,8 @@ function Register(props) {
                         <Input 
                             name="email"
                             placeholder="Email"
+                            onChange={handleChange}
+                            value={form.email}
                         />
                     </FormControl>
 
@@ -97,6 +127,9 @@ function Register(props) {
                         <Input 
                             name="password"
                             placeholder="Password"
+                            onChange={handleChange}
+                            value={form.password}
+                            type="password"
                         />
                     </FormControl>
 
@@ -108,8 +141,9 @@ function Register(props) {
                     >
                         <Tooltip label='please fill required field correctly' hasArrow placement="top">
                             <Button
-                                isDisabled
+                                
                                 colorScheme="blue"
+                                onClick={submitForm}
                             >
                                 Daftar
                             </Button>
@@ -125,5 +159,8 @@ function Register(props) {
     )
 }
 
+function registMeUp(event) {
+
+}
 
 export default Register;

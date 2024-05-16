@@ -18,9 +18,10 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import { BellIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import useAuthStore from "../store/auth";
 
 const AvatarLogin = () => {
-
+  const {removeToken} = useAuthStore();
   return (
       <>
         <Menu>
@@ -43,7 +44,7 @@ const AvatarLogin = () => {
 
             <MenuDivider />
 
-            <RouterLink to="/">
+            <RouterLink to="/" onClick={() => removeToken()}>
               <MenuItem
                 _hover={{ bg: 'red.600' }}
                 variant={'solid'}

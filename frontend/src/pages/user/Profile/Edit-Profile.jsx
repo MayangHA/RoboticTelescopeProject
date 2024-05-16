@@ -26,9 +26,37 @@ import { Avatar } from '@chakra-ui/react';
 import { Link as RouterLink} from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect} from 'react';
+import useAuthStore from '../../../store/auth';
+import { updateUser } from '../../../api/users';
 
 
 function EditProfileUser() {
+
+
+    const {auth} = useAuthStore();
+    const [profile, setProfile] = useState({
+        ...auth
+    });
+
+    function handleChange(event) {
+        const {value, name} = event.target
+        setProfile(prev => ({
+            ...prev,
+            [name]: value
+        })
+        )
+
+    }
+
+    const submitForm = async () => {
+        try {
+            const data = await updateUser(auth.userId, profile);
+
+            return data;
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     return (
         <>
@@ -47,7 +75,7 @@ function EditProfileUser() {
             <WrapItem>
                 <Avatar size="2x1" />
             </WrapItem>
-            <Heading> Jon Doe</Heading>
+            <Heading> {profile.fullName}</Heading>
         </Box>
 
         <Center py={10}>
@@ -65,8 +93,10 @@ function EditProfileUser() {
                         <FormLabel> Nama Lengkap </FormLabel>
                         <Input 
                             style={{ textTransform: 'capitalize' }}
-                            name="name"
+                            name="fullName"
                             variant='flushed'
+                            onChange={handleChange}
+                            value={profile.fullName}
                         />
                     </FormControl>
                 </FormControl>
@@ -76,8 +106,10 @@ function EditProfileUser() {
                         <FormLabel> Email </FormLabel>
                         <Input 
                             style={{ textTransform: 'capitalize' }}
-                            name="name"
+                            name="email"
                             variant='flushed'
+                            onChange={handleChange}
+                            value={profile.email}
                         />
                     </FormControl>
                 </FormControl>
@@ -108,7 +140,7 @@ function EditProfileUser() {
                         </RouterLink>
 
                         <Tooltip>
-                            <Button minW="136" colorScheme="facebook" variant={'solid'} type='submit'>
+                            <Button minW="136" colorScheme="facebook" variant={'solid'} type='submit' onClick={submitForm}>
                                 {''}
                                 Save {''}
                             </Button>
