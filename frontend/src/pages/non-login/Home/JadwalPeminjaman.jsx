@@ -39,7 +39,7 @@ const JadwalPeminjaman = () => {
 
         <>
             {token ? <NavbarL /> : <NavbarNL />}
-            <Container p={5} maxW={"container.lg"} >
+            <Container pt={20} maxW={"container.lg"} >
                 <Center>
                 <Heading>Jadwal Peminjaman</Heading>
                 </Center>

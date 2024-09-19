@@ -27,6 +27,7 @@ import {
     TableCaption,
     TableContainer,
     IconButton,
+    Select,
 } from "@chakra-ui/react";
 import { SearchIcon, DeleteIcon, EditIcon, AddIcon } from "@chakra-ui/icons";
 import Header from "../../components/Admin/Navbar";
@@ -88,6 +89,7 @@ const ManageJadwal = () => {
                                 <Th>Surat Pengantar</Th>
                                 <Th>Waktu Peminjaman</Th>
                                 <Th>Aksi</Th>
+                                <Th>Status</Th>
                             </Tr>
                         </Thead>
 
@@ -113,51 +115,12 @@ const ManageJadwal = () => {
                                         <IconButton aria-label="Add" icon={<AddIcon />} />
                                     </span>
                                 </Td>
-                            </Tr>
-
-                            <Tr>
-                                <Td>Jon Doe</Td>
-                                <Td>123456789</Td>
-                                <Td>2w7Kk@example.com</Td>
-                                <Td>Student</Td>
-                                <Td>Teleskop</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
                                 <Td>
-                                    <span>
-                                        <IconButton aria-label="Delete" icon={<DeleteIcon />} />
-                                        <IconButton aria-label="Edit" icon={<EditIcon />} />
-                                        <IconButton aria-label="Add" icon={<AddIcon />} />
-                                    </span>
-                                </Td>
-                            </Tr>
-
-                            <Tr>
-                                <Td>Jon Doe</Td>
-                                <Td>123456789</Td>
-                                <Td>2w7Kk@example.com</Td>
-                                <Td>Student</Td>
-                                <Td>Teleskop</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>-</Td>
-                                <Td>
-                                    <span>
-                                        <IconButton aria-label="Delete" icon={<DeleteIcon />} />
-                                        <IconButton aria-label="Edit" icon={<EditIcon />} />
-                                        <IconButton aria-label="Add" icon={<AddIcon />} />
-                                    </span>
+                                    <Select>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Rejected">Rejected</option>
+                                    </Select>
                                 </Td>
                             </Tr>
                         </Tbody>

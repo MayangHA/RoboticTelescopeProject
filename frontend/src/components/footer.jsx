@@ -43,11 +43,11 @@ const Footer = () => {
                     <Box>
                         <Heading textAlign={{ base :'center', md:'left', lg:'left' }}
                             color={'white'}>
-                            Leiptca
+                            OAIL
                         </Heading>
                         <Text
                             color={'white'}>
-                            Legal & Intellectual Property Translator Association
+                            Observatorium Astronomi ITERA Lampung
                         </Text>
                     </Box>
                     </Center>
@@ -55,7 +55,7 @@ const Footer = () => {
                     <Center>
                     <Text
                         color={'white'}>
-                        ©2022 LEIPTCA. All rights reserved
+                        ©2024 OAIL. All rights reserved
                     </Text>
 
                     </Center>

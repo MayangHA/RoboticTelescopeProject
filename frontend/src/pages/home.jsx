@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import {useEffect} from 'react'
+import { Link, useNavigate } from "react-router-dom";
 import LineChart from "../components/linechart";
 import NavbarNL from "../components/Navbar/Non-Login/Navbar-NL";
 import Navbar from "../components/User/Navbar";
@@ -8,17 +9,48 @@ import FormPinjam from "../components/formpinjam";
 import useAuthStore from "../store/auth";
 import NavbarL from "../components/Navbar/Logged-In/NavbarL";
 import { USER_ROLE } from "../utils/constant";
+import ProfileAdmin from "./admin/Profile/Profile";
+import HomeNonLogin from "./homeNL";
+import HomeL from "./Login/Home/homeL";
 
 function Home() {
   const { token, auth } = useAuthStore();
+  const navigation = useNavigate()
 
   // If admin then : else
   // auth?.role === USER_ROLE.ADMIN ?
 
+  useEffect(() => {
+    if (!token || !auth?.role) return;
+
+    switch (auth.role) {
+      case USER_ROLE.ADMIN:
+        navigation('/profileadmin', {
+          replace: true,
+        })
+        break;
+
+      case USER_ROLE.USER:
+        navigation('/homelogin', {
+          replace: true,
+        })
+        break;
+
+      default:
+        break;
+    }
+  }, [])
+  
   return (
     <>
-      {token ? <NavbarL></NavbarL> : <NavbarNL></NavbarNL>}
-      <Container as="section" maxWidth={"container.lg"} py="20px">
+      {/* {auth?.role === USER_ROLE.ADMIN ? (
+        <ProfileAdmin></ProfileAdmin>
+      ) : (
+        <HomeNonLogin></HomeNonLogin>
+      )} */}
+
+      {token ? <HomeL></HomeL> : <NavbarNL></NavbarNL>}
+      {/* <Container as="section" maxWidth={"container.lg"} py="20px">
         <Select
           placeholder="Pilih Data yang ingin ditampilkan"
           size="md"
@@ -35,7 +67,7 @@ function Home() {
         </Select>
         <LineChart></LineChart>
         <DateRangeComp></DateRangeComp>
-      </Container>
+      </Container> */}
     </>
 
     // <div>
