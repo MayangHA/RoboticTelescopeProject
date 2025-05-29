@@ -1,79 +1,62 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-// import './App.css'
-import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
-import Home from "./pages/home";
-import About from "./pages/About";
-import PeminjamanTeleskop from "./pages/non-login/Home/PeminjamanTeleskop";
-import JadwalPeminjaman from "./pages/non-login/Home/JadwalPeminjaman";
-import HomeL from "./pages/Login/Home/homeL";
-import ShowProfile from "./pages/user/Profile/TampilProfile";
-import EditProfileUser from "./pages/user/Profile/Edit-Profile";
-import ProfileAdmin from "./pages/admin/Profile/Profile";
-import ManageAkun from "./pages/admin/ManageAkun";
-import AddAccount from "./pages/admin/AddAccount";
-import ManageJadwal from "./pages/admin/ManageJadwal";
-import HomeNonLogin from "./pages/homeNL";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Accounts from './pages/admin/accounts';
+import AddAccount from './pages/admin/accounts/add';
+import EditAccount from './pages/admin/accounts/edit';
+import Borrows from './pages/admin/borrows';
+import AddBorrow from './pages/admin/borrows/add';
+import EditBorrow from './pages/admin/borrows/edit';
+import BorrowTelescope from './pages/borrow';
+import BorrowTelescopeSchedule from './pages/borrow/schedule';
+import Home from './pages/home';
 
 const router = createBrowserRouter([
+  // Missing
   {
-    path: "/",
-    element: <Home></Home>,
-  },
-  // {
-  //   path: "profile",
-  //   element: (<Show></Show>),
-  // },
-  {
-    path: "peminjamanteleskop",
-    element: <PeminjamanTeleskop></PeminjamanTeleskop>,
+    path: '/',
+    element: <Home />,
   },
   {
-    path: "jadwalpeminjaman",
-    element: <JadwalPeminjaman></JadwalPeminjaman>,
+    path: 'borrows',
+    element: <BorrowTelescope />,
   },
   {
-    path: "homelogin",
-    element: <HomeL></HomeL>,
+    path: 'borrows/schedule',
+    element: <BorrowTelescopeSchedule />,
+  },
+  // Admin only
+  {
+    path: 'admin',
+    element: <Accounts />,
   },
   {
-    path: "profile",
-    element: <ShowProfile></ShowProfile>,
+    path: 'admin/accounts',
+    element: <Accounts />,
   },
   {
-    path: "editprofile",
-    element: <EditProfileUser></EditProfileUser>,
+    path: 'admin/accounts/add',
+    element: <AddAccount />,
   },
   {
-    path: "profileadmin",
-    element: <ProfileAdmin></ProfileAdmin>,
+    path: 'admin/accounts/edit/:userId',
+    element: <EditAccount />,
+  },
+
+  {
+    path: 'admin/borrows',
+    element: <Borrows />,
   },
   {
-    path: "manageakun",
-    element: <ManageAkun></ManageAkun>,
+    path: 'admin/borrows/add',
+    element: <AddBorrow />,
   },
   {
-    path: "addaccount",
-    element: <AddAccount></AddAccount>,
-  },
-  {
-    path: "managejadwal",
-    element: <ManageJadwal></ManageJadwal>,
-  },
-  {
-    path: "homenonlogin",
-    element: <HomeNonLogin></HomeNonLogin>,
+    path: 'admin/borrows/edit/:borrowingId',
+    element: <EditBorrow />,
   },
 ]);
-function App() {
-  const [count, setCount] = useState(0);
 
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App;
