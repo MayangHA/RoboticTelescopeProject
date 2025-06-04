@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const { asyncMw } = require('express-asyncmw');
+const { Sequelize, Op } = require('sequelize');
 const { User } = require('../models');
 const {
   createUserSchema,
@@ -53,6 +54,17 @@ class UserController {
         ? +req.query.page
         : 1;
     const offset = page > 0 ? limit * (page - 1) : 0;
+    const where = {};
+
+    if (req.query.fullName) {
+      if (!where[Op.and]) where[Op.and] = [];
+
+      where[Op.and].push(
+        Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('fullName')), {
+          [Op.like]: `%${req.query.fullName.toLowerCase()}%`,
+        })
+      );
+    }
 
     const users = await User.findAndCountAll({
       limit: limit === 0 ? undefined : limit,
@@ -99,19 +111,18 @@ class UserController {
     const body = updateUserPasswordSchema.parse(req.body);
     const newPassword = await hashText(body.password);
 
-    const [, [user]] = await User.update(
+    await User.update(
       { password: newPassword },
       {
         where: {
           userId: +req.params.userId,
         },
-        returning: true,
       }
     );
 
     return res.status(200).json({
       code: 200,
-      data: _.omit(user.dataValues, ['password']),
+      data: null,
     });
   });
 
