@@ -1,4 +1,4 @@
-import {Box, Flex, Select} from '@chakra-ui/react'
+import { Box, Flex, Select } from '@chakra-ui/react';
 import {
   CategoryScale,
   Chart as ChartJS,

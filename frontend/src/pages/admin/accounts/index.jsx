@@ -152,7 +152,7 @@ function Accounts() {
           {
             name: (
               <Text fontSize={'sm'} fontWeight={'bold'}>
-                Action
+                Aksi
               </Text>
             ),
             cell: (row) => (

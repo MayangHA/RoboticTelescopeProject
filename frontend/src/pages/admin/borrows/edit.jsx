@@ -92,14 +92,18 @@ function EditBorrow() {
 
         if (data.proposal[0] !== originalFileRef.current.proposal) {
           const { url: proposalUrl } = await uploadFile(data.proposal[0]);
-          data.proposalUrl = `${import.meta.env.VITE_API_BASE_URL}${proposalUrl}`;
+          data.proposalUrl = `${
+            import.meta.env.VITE_API_BASE_URL
+          }${proposalUrl}`;
         }
 
         if (data.introductory[0] !== originalFileRef.current.introductory) {
           const { url: introductoryUrl } = await uploadFile(
             data.introductory[0]
           );
-          data.introductoryUrl = `${import.meta.env.VITE_API_BASE_URL}${introductoryUrl}`;
+          data.introductoryUrl = `${
+            import.meta.env.VITE_API_BASE_URL
+          }${introductoryUrl}`;
         }
 
         await updateBorrowing(borrowingId, data);
@@ -115,7 +119,9 @@ function EditBorrow() {
   useEffect(() => {
     findBorrowing(borrowingId)
       .then(async (borrowing) => {
-        const users = await listUser();
+        const users = await listUser({
+          limit: 'all',
+        });
         const user = users.find((user) => user.userId === borrowing.userId);
 
         if (!user) {
