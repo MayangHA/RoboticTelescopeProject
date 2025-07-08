@@ -4,7 +4,6 @@ const { USER_ROLE } = require('../utils/constant');
 exports.userLoginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
-  role: z.enum([USER_ROLE.ADMIN, USER_ROLE.USER]).default(USER_ROLE.USER),
 });
 
 exports.userRegisterSchema = z.object({

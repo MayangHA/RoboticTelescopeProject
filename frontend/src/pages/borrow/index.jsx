@@ -1,7 +1,8 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, useToast } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { createBorrowing } from '../../api/borrowings';
 import { uploadFile } from '../../api/files';
 import BorrowForm from '../../components/form/borrow';
@@ -11,6 +12,8 @@ import { borrowTelescopeSchema } from '../../validations/borrow';
 
 function BorrowTelescope() {
   const { auth } = useAuthStore();
+  const toast = useToast()
+  const navigation = useNavigate();
   const { register, handleSubmit, formState, setValue, watch } = useForm({
     defaultValues: {
       name: '',
@@ -62,9 +65,24 @@ function BorrowTelescope() {
       data.proposalUrl = `${import.meta.env.VITE_API_BASE_URL}${proposalUrl}`;
       data.introductoryUrl = `${import.meta.env.VITE_API_BASE_URL}${introductoryUrl}`;
 
-      return createBorrowing(data);
+      const result = await createBorrowing(data);
+
+      return new Promise((resolve) => {
+        toast({
+          title: 'Peminjaman berhasil diajukan!',
+          duration: 1500,
+          colorScheme: 'green',
+          position: 'top'
+        })
+
+        setTimeout(() => {
+          window.location.reload()
+          resolve(result)
+        }, 2000)
+      })
+
     },
-    [auth?.userId]
+    [auth?.userId, toast, navigation]
   );
 
   return (

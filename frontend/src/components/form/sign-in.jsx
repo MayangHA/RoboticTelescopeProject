@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-import { USER_ROLES } from '../../utils/constant';
 
 function SignInForm({ onSubmit, errors, register, formState, children }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -51,22 +50,6 @@ function SignInForm({ onSubmit, errors, register, formState, children }) {
             </Button>
           </Flex>
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-        </FormControl>
-
-        <FormControl isRequired isInvalid={!!errors.role}>
-          <FormLabel>Role</FormLabel>
-          <Select
-            placeholder="Masukkan Role"
-            {...register('role')}
-            disabled={formState.isSubmitting}
-          >
-            {USER_ROLES.map((ur) => (
-              <option value={ur.value} key={`${ur.value}-${ur.title}`}>
-                {ur.title}
-              </option>
-            ))}
-          </Select>
-          <FormErrorMessage>{errors.role?.message}</FormErrorMessage>
         </FormControl>
 
         {children}

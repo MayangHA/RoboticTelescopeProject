@@ -1,3 +1,4 @@
+import { truncate } from 'lodash-es';
 import { Box, Button, Input } from '@chakra-ui/react';
 import { useCallback, useRef } from 'react';
 import { IoClose } from 'react-icons/io5';
@@ -14,6 +15,16 @@ function FileInput({
 
   const onClick = useCallback(() => {
     ref.current.click();
+  }, []);
+
+  const onDownload = useCallback(() => {
+    const blob = new Blob([value], { type: value.type });
+    const fileURL = URL.createObjectURL(blob);
+    const downloadLink = document.createElement('a');
+    downloadLink.href = fileURL;
+    downloadLink.download = value.name;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
   }, []);
 
   return (
@@ -37,8 +48,10 @@ function FileInput({
           borderColor="gray.200"
           w={'100%'}
           position={'relative'}
+          onClick={onDownload}
+          cursor={'pointer'}
         >
-          {value.name}
+          {truncate(value.name, { length: 27 })}
           <Button
             variant={'ghost'}
             onClick={onRemove(name)}

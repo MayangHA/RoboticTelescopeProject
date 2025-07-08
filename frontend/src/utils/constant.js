@@ -104,6 +104,14 @@ export const BORROWING_STATUSES = [
   },
 ];
 
+export const CHARTS_OPTION = {
+  HUM: 'HUM',
+  SKY: 'SKY',
+  AMB: 'AMB',
+  WIND: 'WIND',
+  ADAY: 'ADAY'
+}
+
 export const CHARTS_OPTIONS = [
   {
     value: 'HUM',

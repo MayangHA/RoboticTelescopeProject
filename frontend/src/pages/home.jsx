@@ -15,7 +15,7 @@ import { getStats } from '../api/files';
 import MainLayout from '../layout/main-layout';
 import useStatsStore from '../store/stats';
 import { avgStatsByHour, groupStatsByHour } from '../utils/charts';
-import { CHARTS_OPTIONS } from '../utils/constant';
+import { CHARTS_OPTIONS, CHARTS_OPTION } from '../utils/constant';
 import dayjs from 'dayjs';
 
 ChartJS.register(
@@ -29,7 +29,7 @@ ChartJS.register(
 );
 
 function Home() {
-  const [filter, setFilter] = useState();
+  const [filter, setFilter] = useState(CHARTS_OPTION.HUM);
   const usedFilter = useMemo(
     () => CHARTS_OPTIONS.find((o) => o.value === filter),
     [filter]
@@ -72,7 +72,6 @@ function Home() {
           setFilter(e.target.value);
           setIsChanged(true);
         }}
-        placeholder="Pilih Chart"
       >
         {CHARTS_OPTIONS.map((o) => (
           <option key={o.value} value={o.value}>

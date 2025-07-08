@@ -13,6 +13,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signInSchema } from '../../validations/auth';
+import authStore from '../../store/auth';
 import { USER_ROLE } from '../../utils/constant';
 import { login } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +26,6 @@ function SignInForm() {
     defaultValues: {
       email: '',
       password: '',
-      role: '',
     },
     mode: 'onBlur',
     resolver: zodResolver(signInSchema),
@@ -35,7 +35,9 @@ function SignInForm() {
     async (data) => {
       await login(data);
 
-      switch (data.role) {
+      const { auth } = authStore.getState();
+
+      switch (auth.role) {
         case USER_ROLE.ADMIN:
           navigation('/admin', {
             replace: true,
