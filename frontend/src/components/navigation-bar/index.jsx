@@ -85,6 +85,8 @@ function RightSide({ children, ...props }) {
       alignItems={'center'}
       h={'100%'}
       gap={3}
+      borderRadius={'md'}
+      fontSize={'xs'}
       {...props}
     >
       <Link to="/">Beranda</Link>
@@ -106,7 +108,7 @@ function NavigationBar() {
       <Flex
         justifyContent={'space-between'}
         alignItems={'center'}
-        bg={'gray.500'}
+        bg={'#444341ff'}
         p={4}
       >
         <Image w={12} src="/itera.svg" />
@@ -117,7 +119,13 @@ function NavigationBar() {
           onClick={onToggle}
           display={{ base: 'flex', md: 'none' }}
           variant={'ghost'}
-          color={'white'}
+          color={'#f5f5f5'}
+          borderRadius={'md'}
+          fontSize={'xs'}
+          _hover={{
+            textDecoration: 'none',
+            bg: 'black',
+          }}
           p={0}
         >
           {isOpen ? <IoClose /> : <GiHamburgerMenu />}

@@ -49,7 +49,7 @@ function SignUpForm() {
       <Button
         onClick={onOpen}
         borderRadius={'md'}
-        bg={'white'}
+        bg={'#f5f5f5'}
         fontSize={'xs'}
         _hover={{
           textDecoration: 'none',

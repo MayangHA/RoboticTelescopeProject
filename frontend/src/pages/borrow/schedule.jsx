@@ -33,13 +33,21 @@ function BorrowTelescopeSchedule() {
 
   return (
     <MainLayout>
-      <Flex
+      <Flex 
+        w={"full"}
+        h={"full"}
         alignItems={"center"}
         justifyContent={"center"}
         flexDir={"column"}
         gap={4}
-        py={5}
+        bgColor={'gray.200'}
       >
+        <Flex
+          w={'80%'}
+          h={'auto'}
+        >
+
+        </Flex>
         <Text fontWeight={"bold"} textTransform={"uppercase"} fontSize={"xl"}>
           Peminjaman Teleskop
         </Text>

@@ -6,7 +6,7 @@ export /**
  * @returns {Record<string, {timestamp: string; SKY: number; AMB:number; WIND: number; HUM: number; ADAY: number}[]>}
  */
 function groupStatsByHour(stats, maxHour = 24) {
-  return stats.reduce((acc, curr) => {
+  return (stats||[]).reduce((acc, curr) => {
     const date = dayjs(curr.timestamp);
     const hour = date.hour();
 
