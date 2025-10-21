@@ -1,30 +1,33 @@
 require('dotenv').config();
-const mysql2 = require('mysql2');
+
+const config = {
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT || 'mysql',
+  port: process.env.DB_PORT,
+};
+
+if (config.dialect === 'postgres') {
+  delete config.port;
+
+  config.dialectOptions = {
+    ssl: {
+      require: true,
+    },
+  };
+
+  config.pool = {
+    max: 5,
+    min: 0,
+    acquire: 15000,
+    idle: 5000,
+  };
+}
 
 module.exports = {
-  development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: 'mysql',
-    dialectModule: mysql2,
-  },
-  test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: 'mysql',
-  },
-  production: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: 'mysql',
-  },
+  development: config,
+  test: config,
+  production: config,
 };
