@@ -1,4 +1,6 @@
 require('dotenv').config();
+const mysql2 = require('mysql2');
+const pg = require('pg');
 
 const config = {
   username: process.env.DB_USER,
@@ -7,9 +9,12 @@ const config = {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT || 'mysql',
   port: process.env.DB_PORT,
+  dialectModule: mysql2,
 };
 
 if (config.dialect === 'postgres') {
+  config.dialectModule = pg;
+
   delete config.port;
 
   config.dialectOptions = {
