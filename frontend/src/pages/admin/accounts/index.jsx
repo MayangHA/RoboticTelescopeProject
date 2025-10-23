@@ -83,7 +83,7 @@ function Accounts() {
   }, []);
 
   return (
-    <AdminLayout title={'Akun'}>
+    <AdminLayout title={'Daftar Akun'}>
       <DataTable
         data={filteredUsers}
         actions={

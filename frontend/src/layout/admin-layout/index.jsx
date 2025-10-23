@@ -28,7 +28,7 @@ function AdminLayout({ children, title }) {
   return (
     <Stack h={'100vh'} w={'100vw'}>
       <Flex
-        bg={'blue.700'}
+        bg={'#202020'}
         justifyContent={'flex-end'}
         alignItems={'center'}
         w={'calc(100vw - 12.5rem)'}
@@ -52,7 +52,7 @@ function AdminLayout({ children, title }) {
           alignItems={'center'}
           flexDirection={'column'}
           w={'12.5rem'}
-          bg={'blue.700'}
+          bg={'#202020'}
           h={'100vh'}
           px={2}
           py={5}
@@ -63,13 +63,13 @@ function AdminLayout({ children, title }) {
           <Flex alignItems={'center'} flexDirection={'column'} gap={2}>
             <AdminLink
               href={'/admin/accounts'}
-              title={'Akun'}
+              title={'Daftar Akun'}
               w={'100%'}
               textAlign={'center'}
             />
             <AdminLink
               href={'/admin/borrows'}
-              title={'Peminjaman'}
+              title={'Daftar Peminjam'}
               w={'100%'}
               textAlign={'center'}
             />
