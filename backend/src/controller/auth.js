@@ -20,7 +20,7 @@ class AuthController {
     if (!user) {
       return res.status(404).json({
         code: 404,
-        message: 'User not found.',
+        message: 'Akun tidak ditemukan.',
       });
     }
 
@@ -29,7 +29,7 @@ class AuthController {
     if (!isMatch) {
       return res.status(404).json({
         code: 404,
-        message: 'User not found.',
+        message: 'Akun tidak ditemukan.',
       });
     }
 

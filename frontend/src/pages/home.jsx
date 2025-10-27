@@ -400,7 +400,7 @@ function Home() {
   return (
     <Flex w={'full'} h={'auto'} alignItems={'center'} gap={1} flexDirection={'column'} px={5} bgColor={'#f5f5f5'}>
       <Flex w={'80%'} h={'50vw'} gap={2} px={5} flexDir={'column'} bgColor={'white'} marginTop={10} paddingTop={6} paddingBottom={6} border={1} borderRadius={5} alignItems={'center'} marginBottom={10}>
-        {/* top controls: multi-select menu */}
+        {/* drop-down untuk pilihan data */}
         <HStack w="100%" justify="space-between" px={2}>
           <Menu closeOnSelect={false}>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />} size="md" variant="outline">
@@ -424,7 +424,6 @@ function Home() {
             </MenuList>
           </Menu>
 
-          {/* optional small legend text / right side control */}
           <Text color="gray.600" fontSize="sm">Tampilkan garis: {selected.length}</Text>
         </HStack>
 

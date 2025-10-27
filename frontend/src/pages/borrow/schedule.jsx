@@ -64,8 +64,8 @@ function BorrowTelescopeSchedule() {
             p={4}
             boxShadow={'md'}
             bgColor={'#ffffff'}
-            display="flex"               // ✅ Add this
-            justifyContent="center"     // ✅ Horizontally center child
+            display="flex"               
+            justifyContent="center"     
             alignItems="flex-start"
             mt={10}
             >

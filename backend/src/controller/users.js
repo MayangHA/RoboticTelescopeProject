@@ -35,7 +35,7 @@ class UserController {
     if (!user) {
       return res.status(404).json({
         code: 404,
-        message: 'User not found.',
+        message: 'Akun tidak ditemukan.',
       });
     }
 
@@ -91,7 +91,7 @@ class UserController {
     if (!user) {
       return res.status(404).json({
         code: 404,
-        message: 'User not found.',
+        message: 'Akun tidak ditemukan.',
       });
     }
 

@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  useToast, // 🟢 Tambahkan ini
 } from '@chakra-ui/react';
 import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -22,6 +23,8 @@ import $SignInForm from '../form/sign-in';
 function SignInForm() {
   const navigation = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast(); // 🟢 Inisialisasi toast
+
   const { register, handleSubmit, formState, reset } = useForm({
     defaultValues: {
       email: '',
@@ -33,35 +36,56 @@ function SignInForm() {
 
   const onSubmit = useCallback(
     async (data) => {
-      await login(data);
+      try {
+        await login(data);
 
-      const { auth } = authStore.getState();
+        const { auth } = authStore.getState();
 
-      switch (auth.role) {
-        case USER_ROLE.ADMIN:
-          navigation('/admin', {
-            replace: true,
-          });
-          break;
+        // 🟢 Tampilkan toast berhasil
+        toast({
+          title: 'Berhasil login!',
+          description: `Selamat datang kembali, ${auth?.fullName || 'pengguna'}!`,
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top',
+        });
 
-        case USER_ROLE.USER:
-          navigation('/', {
-            replace: true,
-          });
-          break;
+        // Arahkan sesuai role
+        switch (auth.role) {
+          case USER_ROLE.ADMIN:
+            navigation('/admin', { replace: true });
+            break;
+          case USER_ROLE.USER:
+            navigation('/', { replace: true });
+            break;
+          default:
+            break;
+        }
 
-        default:
-          break;
+        onClose();
+      } catch (error) {
+        // 🟢 Ambil pesan error dari server jika ada
+        const serverMessage =
+          error?.response?.data?.message ||
+          error?.message ||
+          'Akun tidak ditemukan';
+
+        toast({
+          title: 'Gagal login',
+          description: serverMessage,
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        });
       }
-
-      onClose();
     },
-    [navigation, onClose]
+    [navigation, onClose, toast]
   );
 
   useEffect(() => {
     if (!isOpen) return;
-
     reset();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
@@ -82,6 +106,7 @@ function SignInForm() {
       >
         Masuk
       </Button>
+
       <Modal
         closeOnOverlayClick={false}
         isOpen={isOpen}
