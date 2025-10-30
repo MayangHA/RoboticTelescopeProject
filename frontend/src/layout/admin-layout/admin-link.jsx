@@ -11,10 +11,10 @@ function AdminLink({ href, title, ...props }) {
     <Link
       to={href}
       {...props}
-      bg={isActive ? '#ffd100' : '#fffefaff'}
-      color={isActive ? 'black' : 'black'}
+      bg={isActive ? 'gray.400' : 'white'}
+      color={isActive ? 'white' : 'black'}
       _hover={{
-        bg: isActive ? '#ffd100' : '#ffd100',
+        bg: isActive ? 'gray.300' : 'gray.200',
       }}
     >
       {title}

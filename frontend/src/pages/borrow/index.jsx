@@ -88,21 +88,13 @@ function BorrowTelescope() {
   return (
     <MainLayout isProtected>
       <Flex
-        flexDir="column"
-        bg='#f5f5f5'
-        w="100%"
-        maxW="1400px"   // supaya tidak full layar
-        borderRadius="lg"
-        p={8}
-        mx="auto"       // center
-        mt={5}
-        boxShadow={'md'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        flexDir={'column'}
+        gap={4}
+        py={5}
       >
-        <Text fontWeight="bold"
-        textTransform="uppercase"
-        fontSize="xl"
-        textAlign="center"
-        mb={6}>
+        <Text fontWeight={'bold'} textTransform={'uppercase'} fontSize={'xl'}>
           Peminjaman Teleskop
         </Text>
         <BorrowForm

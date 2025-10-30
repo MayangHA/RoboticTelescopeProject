@@ -19,7 +19,6 @@ import {
 import { Link } from '../link';
 import Auth from './auth';
 import { USER_ROLE } from '../../utils/constant';
-import SignInForm from './sign-in';
 
 function AvatarProfile() {
   const { token, auth, removeToken } = useAuthStore();
@@ -91,8 +90,8 @@ function RightSide({ children, ...props }) {
       {...props}
     >
       <Link to="/">Beranda</Link>
-      {token && auth ? <Link to="/borrows">Form Peminjaman</Link> : null}
-      <Link to="/borrows/schedule">Jadwal Peminjaman</Link>
+      {token && auth ? <Link to="/borrows">Peminjaman</Link> : null}
+      <Link to="/borrows/schedule">Jadwal</Link>
       {children}
       <AvatarProfile />
     </Stack>
@@ -146,4 +145,3 @@ function NavigationBar() {
 }
 
 export default NavigationBar;
-
