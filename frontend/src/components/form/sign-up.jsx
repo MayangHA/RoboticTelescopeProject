@@ -6,7 +6,6 @@ import {
   FormLabel,
   Input,
   Stack,
-  useToast, // 🟢 Tambahkan ini
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
@@ -22,34 +21,9 @@ function SignUpForm({
   ...props
 }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const toast = useToast(); // 🟢 Tambahkan ini
 
   return (
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
-        try {
-          await onSubmit(e);
-          toast({
-            title: 'Pendaftaran berhasil!',
-            description: 'Akun Anda telah berhasil dibuat.',
-            status: 'success',
-            duration: 3000,
-            isClosable: true,
-            position: 'top',
-          });
-        } catch (err) {
-          toast({
-            title: 'Terjadi kesalahan',
-            description: err.message || 'Gagal mendaftarkan akun.',
-            status: 'error',
-            duration: 3000,
-            isClosable: true,
-            position: 'top',
-          });
-        }
-      }}
-    >
+    <form onSubmit={onSubmit}>
       <Stack spacing={4} w={'100%'} px={2} {...props}>
         <FormControl isRequired isInvalid={!!errors.fullName}>
           <FormLabel>Nama Lengkap</FormLabel>

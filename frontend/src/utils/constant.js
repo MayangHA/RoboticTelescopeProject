@@ -119,11 +119,11 @@ export const CHARTS_OPTIONS = [
   },
   {
     value: 'SKY',
-    title: 'Suhu Langit - Sekitar',
+    title: 'Suhu',
   },
   {
     value: 'AMB',
-    title: 'Suhu Sekitar',
+    title: 'Curah Hujan',
   },
   {
     value: 'WIND',
@@ -131,6 +131,6 @@ export const CHARTS_OPTIONS = [
   },
   {
     value: 'ADAY',
-    title: 'Intensitas Cahaya Matahari',
+    title: 'Radiasi Matahari',
   },
 ];

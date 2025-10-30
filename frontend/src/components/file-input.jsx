@@ -66,8 +66,8 @@ function FileInput({
         </Box>
       ) : (
         <Button w={'100%'} onClick={onClick} disabled={disabled}
-          variant="solid"            
-          bg="#f5cc00"           
+          variant="solid"            // optional (solid / outline / ghost / link)
+          bg="#f5cc00"            // ✅ or use custom hex instead
           _hover={{ bg: "#b89b09ff" }}
         >
           Upload
