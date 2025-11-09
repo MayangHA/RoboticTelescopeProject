@@ -130,8 +130,8 @@ function EditBorrow() {
         }
 
         const [proposal, introductory] = await Promise.all([
-          getFile(borrowing.proposalUrl),
-          getFile(borrowing.introductoryUrl),
+          borrowing.proposalUrl ? getFile(borrowing.proposalUrl) : null,
+          borrowing.introductoryUrl ? getFile(borrowing.introductoryUrl) : null,
         ]);
 
         originalFileRef.current.proposal = proposal;

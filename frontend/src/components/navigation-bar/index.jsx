@@ -50,7 +50,7 @@ function AvatarProfile() {
       <MenuList alignItems={'center'} p="3" direction="ltr">
         {auth?.role === USER_ROLE.ADMIN ? (
           <>
-            <RouterLink to="/admin">
+            <RouterLink to="/admin/accounts">
               <MenuItem color={'black'}>Admin Panel</MenuItem>
             </RouterLink>
             <MenuDivider />

@@ -8,12 +8,14 @@ import {
 } from '../utils/constant';
 import { fileSchema } from './shared';
 
+
+
 const baseBorrowTelescopeSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   occupation: z.enum(OCCUPATION.map((oc) => oc.value)),
   nimNip: z.string().min(6),
-  rightAscescion: z.coerce.number(),
+  rightAscescion: z.string(),
   declination: z.coerce.number(),
   magnitude: z.coerce.number(),
   observationObject: z.enum(OBSERVATION_OBJECT.map((ob) => ob.value)),

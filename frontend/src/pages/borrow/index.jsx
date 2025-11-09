@@ -12,7 +12,7 @@ import { borrowTelescopeSchema } from '../../validations/borrow';
 
 function BorrowTelescope() {
   const { auth } = useAuthStore();
-  const toast = useToast()
+  const toast = useToast();
   const navigation = useNavigate();
   const { register, handleSubmit, formState, setValue, watch } = useForm({
     defaultValues: {
@@ -57,14 +57,19 @@ function BorrowTelescope() {
     async (data) => {
       const [{ url: proposalUrl }, { url: introductoryUrl }] =
         await Promise.all([
-          uploadFile(data.proposal[0]),
-          uploadFile(data.introductory[0]),
+          data.proposal[0] ? uploadFile(data.proposal[0]) : { url: null },
+          data.introductory[0]
+            ? uploadFile(data.introductory[0])
+            : { url: null },
         ]);
 
+      data.proposalUrl = proposalUrl
+        ? `${import.meta.env.VITE_API_BASE_URL}${proposalUrl}`
+        : null;
+      data.introductoryUrl = introductoryUrl
+        ? `${import.meta.env.VITE_API_BASE_URL}${introductoryUrl}`
+        : null;
       data.userId = auth.userId;
-      data.proposalUrl = `${import.meta.env.VITE_API_BASE_URL}${proposalUrl}`;
-      data.introductoryUrl = `${import.meta.env.VITE_API_BASE_URL}${introductoryUrl}`;
-
       const result = await createBorrowing(data);
 
       return new Promise((resolve) => {
@@ -72,15 +77,14 @@ function BorrowTelescope() {
           title: 'Peminjaman berhasil diajukan!',
           duration: 1500,
           colorScheme: 'green',
-          position: 'top'
-        })
+          position: 'top',
+        });
 
         setTimeout(() => {
-          window.location.reload()
-          resolve(result)
-        }, 2000)
-      })
-
+          window.location.reload();
+          resolve(result);
+        }, 2000);
+      });
     },
     [auth?.userId, toast, navigation]
   );
@@ -89,20 +93,22 @@ function BorrowTelescope() {
     <MainLayout isProtected>
       <Flex
         flexDir="column"
-        bg='#f5f5f5'
+        bg="#f5f5f5"
         w="100%"
-        maxW="1400px"   // supaya tidak full layar
+        maxW="1400px" 
         borderRadius="lg"
         p={8}
-        mx="auto"       // center
+        mx="auto"
         mt={5}
         boxShadow={'md'}
       >
-        <Text fontWeight="bold"
-        textTransform="uppercase"
-        fontSize="xl"
-        textAlign="center"
-        mb={6}>
+        <Text
+          fontWeight="bold"
+          textTransform="uppercase"
+          fontSize="xl"
+          textAlign="center"
+          mb={6}
+        >
           Peminjaman Teleskop
         </Text>
         <BorrowForm

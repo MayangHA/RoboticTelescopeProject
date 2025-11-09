@@ -31,7 +31,6 @@ function DownloadAws() {
   const onSubmit = useCallback(
     async (data) => {
       const file = await getAws(data.startDate, data.endDate);
-
       // Download file
       const url = window.URL.createObjectURL(file);
       const link = document.createElement('a');

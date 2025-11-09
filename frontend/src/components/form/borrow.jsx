@@ -105,7 +105,7 @@ function BorrowForm({
               <Input
                 {...register('rightAscescion')}
                 placeholder="Masukkan Asensio Rekta"
-                type="number"
+                type="text"
                 disabled={formState.isSubmitting}
               />
               <FormErrorMessage>
@@ -191,8 +191,7 @@ function BorrowForm({
           </Stack>
         </GridItem>
       </Grid>
-
-      {/* 🟢 BAGIAN INI DIUBAH: Upload tidak lagi wajib */}
+              {/* Proposal & Surat Pengantar Section */}
       <Grid
         templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
         gap={6}
@@ -208,6 +207,7 @@ function BorrowForm({
               onRemove={onFileRemove}
               name="proposal"
               disabled={formState.isSubmitting}
+              required={!!proposalRequired}
             />
             <FormErrorMessage>{errors.proposal?.message}</FormErrorMessage>
           </FormControl>
@@ -222,6 +222,7 @@ function BorrowForm({
               onRemove={onFileRemove}
               name="introductory"
               disabled={formState.isSubmitting}
+              required={!!introductoryRequired}
             />
             <FormErrorMessage>
               {errors.introductory?.message}

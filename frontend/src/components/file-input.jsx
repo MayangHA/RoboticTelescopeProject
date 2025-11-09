@@ -9,7 +9,7 @@ function FileInput({
   onFileChange,
   onRemove,
   disabled,
-  required = true,
+  required = false,
 }) {
   const ref = useRef();
 

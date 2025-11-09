@@ -54,7 +54,7 @@ function SignInForm() {
         // Arahkan sesuai role
         switch (auth.role) {
           case USER_ROLE.ADMIN:
-            navigation('/admin', { replace: true });
+            navigation('/admin/accounts', { replace: true });
             break;
           case USER_ROLE.USER:
             navigation('/', { replace: true });

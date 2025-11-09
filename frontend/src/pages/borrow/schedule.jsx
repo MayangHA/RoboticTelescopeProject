@@ -80,7 +80,6 @@ function BorrowTelescopeSchedule() {
               >
                 <Th
                   color={"black"}
-                  te
                   fontWeight={"bold"}
                   fontSize={"15"}
                   textAlign={"center"}
@@ -145,74 +144,6 @@ function BorrowTelescopeSchedule() {
 
         </Box>
         </Flex>
-        {/* <Text fontWeight={"bold"} textTransform={"uppercase"} fontSize={"xl"}>
-          Peminjaman Teleskop
-        </Text>
-        <TableContainer py={10}>
-          <Table variant="striped" colorScheme="black">
-            <Thead>
-              <Tr
-                color={"black"}
-                fontWeight={"bold"}
-                fontSize={"20"}
-                textAlign={"center"}
-              >
-                <Th
-                  color={"black"}
-                  te
-                  fontWeight={"bold"}
-                  fontSize={"15"}
-                  textAlign={"center"}
-                >
-                  Nama Peminjam
-                </Th>
-                <Th
-                  color={"black"}
-                  fontWeight={"bold"}
-                  fontSize={"15"}
-                  textAlign={"center"}
-                >
-                  Teleskop
-                </Th>
-                <Th
-                  color={"black"}
-                  fontWeight={"bold"}
-                  fontSize={"15"}
-                  textAlign={"center"}
-                >
-                  Waktu
-                </Th>
-              </Tr>
-            </Thead>
-            {isFetching ? (
-              <Tr>
-                <Th colSpan={3} textAlign={"center"}>
-                  Loading...
-                </Th>
-              </Tr>
-            ) : (
-              borrowings.map((borrowing) => (
-                <Tr key={`${borrowing.borrowingId}`}>
-                  <Th textAlign={"center"}>{borrowing.name}</Th>
-                  <Th textAlign={"center"}>
-                    {TELESCOPE_TYPE.find(
-                      (tt) => tt.value === borrowing.telescopeType
-                    )?.title || borrowing.telescopeType}
-                  </Th>
-                  <Th textAlign={"center"}>
-                    {dayjs(borrowing.borrowingTime)
-                      .locale("id")
-                      .format("dddd, DD MMMM YYYY HH:mm")}{" "}
-                    -{" "}
-                    {dayjs(borrowing.borrowingTimeUntil)
-                      .locale("id")
-                      .format("dddd, DD MMMM YYYY HH:mm")}
-                  </Th>
-                </Tr>
-              ))
-            )}
-          </Table>
-        </TableContainer> */}
       </Flex>
     </MainLayout>
   );

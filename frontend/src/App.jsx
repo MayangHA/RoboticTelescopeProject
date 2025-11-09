@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Accounts from './pages/admin/accounts';
+import Admin from './pages/admin';
 import AddAccount from './pages/admin/accounts/add';
 import EditAccount from './pages/admin/accounts/edit';
 import Borrows from './pages/admin/borrows';
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
   // Admin only
   {
     path: 'admin',
-    element: <Accounts />,
+    element: <Admin />,
   },
   {
     path: 'admin/accounts',

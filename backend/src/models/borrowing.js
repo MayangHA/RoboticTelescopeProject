@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       rightAscescion: {
         allowNull: false,
-        type: DataTypes.DECIMAL(25, 2),
+        type: DataTypes.STRING,
       },
       declination: {
         allowNull: false,
@@ -75,11 +75,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       proposalUrl: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING,
       },
       introductoryUrl: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING,
       },
       borrowingTime: {

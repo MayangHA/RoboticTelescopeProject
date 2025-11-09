@@ -86,12 +86,18 @@ function AddBorrow() {
 
       const [{ url: proposalUrl }, { url: introductoryUrl }] =
         await Promise.all([
-          uploadFile(data.proposal[0]),
-          uploadFile(data.introductory[0]),
+          data.proposal[0] ? uploadFile(data.proposal[0]) : { url: null },
+          data.introductory[0]
+            ? uploadFile(data.introductory[0])
+            : { url: null },
         ]);
 
-      data.proposalUrl = `${import.meta.env.VITE_API_BASE_URL}${proposalUrl}`;
-      data.introductoryUrl = `${import.meta.env.VITE_API_BASE_URL}${introductoryUrl}`;
+      data.proposalUrl = proposalUrl
+        ? `${import.meta.env.VITE_API_BASE_URL}${proposalUrl}`
+        : null;
+      data.introductoryUrl = introductoryUrl
+        ? `${import.meta.env.VITE_API_BASE_URL}${introductoryUrl}`
+        : null;
 
       const borrowing = await createBorrowing(data);
 

@@ -35,11 +35,6 @@ function MainLayout({ children, isProtected }) {
         direction="column"
       >
         <Flex gap={4} mb={2} >
-          <Image src="/instagram-vector-logo-icon-social-media-logotype_901408-392" boxSize="32px" />
-          <Image src="/twitter.png" boxSize="32px" />
-          <Image src="/youtube.png" boxSize="32px" />
-          <Image src="/facebook.png" boxSize="32px" />
-          <Image src="/gmail.png" boxSize="32px" />
         </Flex>
         <Text fontSize="sm" color="white">
           Observatorium Astronomi ITERA Lampung (2025)
