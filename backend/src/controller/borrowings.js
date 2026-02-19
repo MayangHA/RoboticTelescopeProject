@@ -94,6 +94,7 @@ class BorrowingController {
         : 1;
     const offset = page > 0 ? limit * (page - 1) : 0;
     const where = req.query.userId ? { userId: +req.query.userId } : {};
+    const status = req.query.status;
 
     if (!req.auth || req.auth.role !== USER_ROLE.ADMIN) {
       where.borrowingTime = {
@@ -104,6 +105,16 @@ class BorrowingController {
       };
     }
 
+    if (where.status && status) {
+      if (status === 'all') {
+        delete where.status
+      } else {
+        where.status = {
+          [Op.eq]: status
+        }
+      }
+    }
+    
     const borrowings = await Borrowing.findAndCountAll({
       where,
       limit: limit === 0 ? undefined : limit,

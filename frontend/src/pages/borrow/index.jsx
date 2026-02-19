@@ -16,8 +16,8 @@ function BorrowTelescope() {
   const navigation = useNavigate();
   const { register, handleSubmit, formState, setValue, watch } = useForm({
     defaultValues: {
-      name: '',
-      email: '',
+      name: auth?.fullName,
+      email: auth?.email,
       occupation: '',
       nimNip: '',
       rightAscescion: '',

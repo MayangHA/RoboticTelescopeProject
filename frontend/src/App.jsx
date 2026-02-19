@@ -9,7 +9,7 @@ import EditBorrow from './pages/admin/borrows/edit';
 import BorrowTelescope from './pages/borrow';
 import BorrowTelescopeSchedule from './pages/borrow/schedule';
 import Home from './pages/home';
-import SignInForm from './components/form/sign-in';
+import ProfilePanel from './pages/user/profilePanel';
 
 const router = createBrowserRouter([
   // Missing
@@ -25,10 +25,9 @@ const router = createBrowserRouter([
     path: 'borrows/schedule',
     element: <BorrowTelescopeSchedule />,
   },
-
   {
-    path: 'borrows/nonlogin',
-    element: <SignInForm />,
+    path: 'user/profile',
+    element: <ProfilePanel />,
   },
   // Admin only
   {

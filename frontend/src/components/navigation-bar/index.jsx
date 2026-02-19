@@ -55,7 +55,14 @@ function AvatarProfile() {
             </RouterLink>
             <MenuDivider />
           </>
-        ) : null}
+        ) : 
+          <>
+            <RouterLink to="user/profile">
+              <MenuItem color={'black'}>Profil</MenuItem>
+            </RouterLink>
+            <MenuDivider />
+          </>
+        }
         <RouterLink to="/" onClick={onLogout}>
           <MenuItem
             _hover={{ bg: 'red.600' }}

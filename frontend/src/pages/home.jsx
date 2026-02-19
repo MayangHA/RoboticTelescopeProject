@@ -51,6 +51,14 @@ const DATASET_COLORS = [
   { hex: '#C4B5FD', rgba: 'rgba(196,181,253,0.18)' }, // ADAY - soft purple
 ];
 
+const TOOLTIP_CONFIG = {
+  HUM: { label: 'Humidity', unit: '%' },
+  SKY: { label: 'Sky Temperature', unit: '°C' },
+  AMB: { label: 'Ambient Temperature', unit: '°C' },
+  WIND: { label: 'Wind Speed', unit: 'm/s' },
+  ADAY: { label: 'Air Density', unit: 'kg/m^3' },
+};
+
 function Home() {
   const [isChanged, setIsChanged] = useState(false);
   const stats = useStatsStore((state) => state.stats);
@@ -81,6 +89,7 @@ function Home() {
         if (!selected.includes(option.value)) return null;
         const color = DATASET_COLORS[idx % DATASET_COLORS.length];
         return {
+          key: option.value,
           label: option.title,
           data: Object.values(data).map((s) => s[option.value]),
           borderWidth: 3,
@@ -118,14 +127,33 @@ function Home() {
         padding: { top: 8, bottom: 12 },
       },
       tooltip: {
-        backgroundColor: '#ffffff',
-        titleColor: '#000',
-        bodyColor: '#000',
-        borderColor: '#e2e8f0',
-        borderWidth: 1,
-        padding: 8,
-        displayColors: false,
-      },
+  backgroundColor: '#ffffff',
+  titleColor: '#000',
+  bodyColor: '#000',
+  borderColor: '#e2e8f0',
+  borderWidth: 1,
+  padding: 10,
+  displayColors: false,
+
+  callbacks: {
+    title: (context) => {
+      return `Jam ${context[0].label}`;
+    },
+
+    label: (context) => {
+      const datasetKey = context.dataset.key;
+      const value = context.parsed.y;
+
+      const config = TOOLTIP_CONFIG[datasetKey];
+
+      if (!config) {
+        return `${context.dataset.label}: ${value}`;
+      }
+
+      return `${config.label}: ${value} ${config.unit}`;
+    },
+  },
+},
     },
     responsive: true,
     maintainAspectRatio: false,
